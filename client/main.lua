@@ -71,6 +71,8 @@ end)
 
 
 --Oven station--
+
+--NH CONTEXT--
 RegisterNetEvent("qb-restaurant:client:OpenMenu")
 AddEventHandler("qb-restaurant:client:OpenMenu", function(config)
     for k, v in pairs(config) do
@@ -94,6 +96,31 @@ AddEventHandler("qb-restaurant:client:OpenMenu", function(config)
         })
     end 
 end)
+
+--QB Menu Option --
+
+--[[RegisterNetEvent("qb-restaurant:client:OpenMenu")
+AddEventHandler("qb-restaurant:client:OpenMenu", function(config)
+    local restaurantMenu = {}
+    for k, v in pairs(config) do
+        table.insert(restaurantMenu, {
+            header = v.label,
+            txt = v.description,
+            params = {
+                event = 'qb-restaurant:menu:AllStations',
+                args = {
+                    item = v.item, --item that will be given
+                    required = v.required, -- required items to make
+                    progressbar = v.progressbar, -- text to display on progressbar
+                    progresstime = v.progresstime, -- in milliseconds
+                    dictionary = v.dictionary, --dictionary name for animation
+                    animname = v.animname --animation name
+                }
+            }
+        })
+    end
+    exports['qb-menu']:openMenu(restaurantMenu) 
+end)]]--
 
 RegisterNetEvent("qb-restaurant:menu:AllStations")
 AddEventHandler("qb-restaurant:menu:AllStations", function(data)
