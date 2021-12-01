@@ -3,11 +3,11 @@ Config = {}
 Config.Job = "pizza"
 
 Config.Locations = {
-    [1] = {coords = vector3(813.7376, -749.700, 27.529), text = "Drink Station", config = Drink},
-    [2] = {coords = vector3(809.89, -761.22, 26.78), text = "Prep Station", config = Prep},
-    [3] = {coords = vector3(806.64, -757.7, 26.78), text = "Dough Station", config = Dough},
-    [4] = {coords = vector3(806.21, -763.18, 26.78), text = "Oven", config = Oven},
-    [5] = {coords = vector3(814.72, -760.01, 22.3), text = "Cheese", config = Cheese},
+    [1] = {coords = vector3(285.2629, -984.524, 29.433), text = "Drink Station", config = Drink},
+    [2] = {coords = vector3(288.4255, -985.437, 29.433), text = "Prep Station", config = Prep},
+    [3] = {coords = vector3(285.8505, -983.637, 29.433), text = "Dough Station", config = Dough},
+    [4] = {coords = vector3(287.9841, -981.444, 29.433), text = "Oven", config = Oven},
+    [5] = {coords = vector3(283.6477, -984.193, 29.433), text = "Cheese", config = Cheese},
 }
 
 Config.JobStash = {
