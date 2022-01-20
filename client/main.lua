@@ -42,7 +42,7 @@ Citizen.CreateThread(function()
                     idle = 0
                     DrawText3D(v.coords.x, v.coords.y, v.coords.z, "[E] "..v.text)
                     if IsControlJustPressed(0, 38) then
-                        TriggerEvent("qb-restaurant:client:OpenMenu", v.config)
+                        TriggerEvent(Config.FolderName..":client:OpenMenu", v.config)
                     end
                 end
             end
@@ -50,12 +50,11 @@ Citizen.CreateThread(function()
             for k, v in pairs(Config.JobStash) do
                 -- body
                 if #(GetEntityCoords(playerped) - v.coords) < 2.0 then
-                -- if #(GetEntityCoords(playerped) - v.coords) < 2.0 and PlayerJob.name == Config.Job then
                     inRange = true
                     idle = 0
                     DrawText3D(v.coords.x, v.coords.y, v.coords.z, "[E] Access Job Stash")
                     if IsControlJustPressed(0, 38) then
-                        TriggerEvent("qb-restaurant:client:jobstash", v.name, v.size, v.slots)
+                        TriggerEvent(Config.FolderName..":client:jobstash", v.name, v.size, v.slots)
                     end
                 end
             end
@@ -73,8 +72,8 @@ end)
 --Oven station--
 
 --NH CONTEXT--
-RegisterNetEvent("qb-restaurant:client:OpenMenu")
-AddEventHandler("qb-restaurant:client:OpenMenu", function(config)
+RegisterNetEvent(Config.FolderName..":client:OpenMenu")
+AddEventHandler(Config.FolderName..":client:OpenMenu", function(config)
     for k, v in pairs(config) do
         TriggerEvent('nh-context:sendMenu',{
             {
@@ -82,7 +81,7 @@ AddEventHandler("qb-restaurant:client:OpenMenu", function(config)
                 header = v.label,
                 txt = v.description,
                 params = {
-                    event = "qb-restaurant:menu:AllStations",
+                    event = Config.FolderName..":menu:AllStations",
                     args = {
                         item = v.item, --item that will be given
                         required = v.required, -- required items to make
@@ -99,15 +98,15 @@ end)
 
 --QB Menu Option --
 
---[[RegisterNetEvent("qb-restaurant:client:OpenMenu")
-AddEventHandler("qb-restaurant:client:OpenMenu", function(config)
+--[[RegisterNetEvent(Config.FolderName..":client:OpenMenu")
+AddEventHandler(Config.FolderName..":client:OpenMenu", function(config)
     local restaurantMenu = {}
     for k, v in pairs(config) do
         table.insert(restaurantMenu, {
             header = v.label,
             txt = v.description,
             params = {
-                event = 'qb-restaurant:menu:AllStations',
+                event = Config.FolderName..':menu:AllStations',
                 args = {
                     item = v.item, --item that will be given
                     required = v.required, -- required items to make
@@ -122,9 +121,9 @@ AddEventHandler("qb-restaurant:client:OpenMenu", function(config)
     exports['qb-menu']:openMenu(restaurantMenu) 
 end)]]--
 
-RegisterNetEvent("qb-restaurant:menu:AllStations")
-AddEventHandler("qb-restaurant:menu:AllStations", function(data)
-    QBCore.Functions.TriggerCallback('qb-restaurant:server:get:ingredient', function(HasItems)
+RegisterNetEvent(Config.FolderName..":menu:AllStations")
+AddEventHandler(Config.FolderName..":menu:AllStations", function(data)
+    QBCore.Functions.TriggerCallback(Config.FolderName..":server:get:ingredient", function(HasItems)
         if HasItems then
             local ped = PlayerPedId()
             local playerPed = PlayerPedId()
@@ -141,7 +140,7 @@ AddEventHandler("qb-restaurant:menu:AllStations", function(data)
                 
                 ClearPedTasksImmediately(ped)
                 FreezeEntityPosition(playerPed, false)
-            TriggerServerEvent('qb-restaurant:server:cook', data.required, data.item)
+            TriggerServerEvent(Config.FolderName..':server:cook', data.required, data.item)
             end)
         else
             QBCore.Functions.Notify("You don\'t have all the ingredients!", "error")
@@ -150,8 +149,8 @@ AddEventHandler("qb-restaurant:menu:AllStations", function(data)
 end)
 
 --stash--
-RegisterNetEvent("qb-restaurant:client:jobstash")
-AddEventHandler("qb-restaurant:client:jobstash", function(name, size, slots)
+RegisterNetEvent(Config.FolderName..":client:jobstash")
+AddEventHandler(Config.FolderName..":client:jobstash", function(name, size, slots)
     TriggerServerEvent("inventory:server:OpenInventory", "stash", name, {
         maxweight = size,
         slots = slots,

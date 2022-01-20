@@ -2,6 +2,8 @@ Config = {}
 
 Config.Job = "pizza"
 
+Config.FolderName = "qb-restaurant"
+
 Config.Locations = {
     [1] = {coords = vector3(285.2629, -984.524, 29.433), text = "Drink Station", config = Drink},
     [2] = {coords = vector3(288.4255, -985.437, 29.433), text = "Prep Station", config = Prep},
@@ -30,9 +32,13 @@ Drink = {
 Prep = {
     [1] = {
         label = "Make Pizza Sauce", 
-        description = "Cut Bell Pepper | Cut Mushrooms | Cut Onions | Cut Tomatoes", 
-        item = "pizza-sauce", --item that will be given
-        required = {"cut-bellpepper", "cut-mushroom", "cut-onion", "cut-tomato"}, -- required items to make
+        description = "Mushrooms | Onion | Tomatoes", 
+        item = "sauce", --item that will be given
+        required = {
+            [1] = {itemName = "mushrooms", amount = 1},
+            [2] = {itemName = "onion", amount = 1},
+            [3] = {itemName = "tomatoes", amount = 4},
+        },
         progressbar = "Making Pizza Sauce", -- text to display on progressbar
         progresstime = 10000, -- in milliseconds
         dictionary = "mini@repair", --dictionary name for animation
@@ -45,7 +51,11 @@ Oven = {
         label = "Make Cheese Pizza", 
         description = "Pizza Dough | Sauce | Cheese ", 
         item = "cheese-pizza", --item that will be given
-        required = {"pizza-dough", "pizza-sauce", "cheese"}, -- required items to make
+        required = {
+            [1] = {itemName = "dough", amount = 1},
+            [2] = {itemName = "sauce", amount = 3},
+            [3] = {itemName = "cheese", amount = 4},
+        }, -- required items to make
         progressbar = "Making Cheese Pizza", -- text to display on progressbar
         progresstime = 15000, -- in milliseconds
         dictionary = "anim@mp_player_intmenu@key_fob@", --dictionary name for animation
@@ -58,7 +68,11 @@ Dough = {
         label = "Make Dough", 
         description = "Yeast | Flour | Salt", 
         item = "pizza-dough", --item that will be given
-        required = {"yeast", "salt", "flour"}, -- required items to make
+        required = {
+            [1] = {itemName = "yeast", amount = 1},
+            [2] = {itemName = "salt", amount = 3},
+            [3] = {itemName = "flour", amount = 2},
+        }, -- required items to make
         progressbar = "Making Pizza Dough", -- text to display on progressbar
         progresstime = 10000, -- in milliseconds
         dictionary = "mini@repair", --dictionary name for animation

@@ -1,9 +1,10 @@
-# Make sure to Checkout my Tebex store for any more Sctips
+# Make sure to Checkout my Tebex store for any more Scrips
 URL - snipe.tebex.io
 #
 
 # Generic Restaurant Job which can be used for any restaurant.
 
+Clone the folder, change the folder name and change the Config.FolderName in Config to the folder name.
 ### Currently this job is configured for gabz-pizzeria mlo, but can be easily changed to any mlo throughout the city just by editing the config values.
 
 ```
@@ -13,7 +14,6 @@ Config.Locations = {
     [3] = {coords = vector3(806.64, -757.7, 26.78), text = "Dough Station", config = Dough},
     [4] = {coords = vector3(806.21, -763.18, 26.78), text = "Oven", config = Oven},
 }
-
 ```
 
 #### Explanation about these values
@@ -41,7 +41,11 @@ Drink = {
         label = "Soda", --label of the item that can be made when the button is clicked
         description = "Soda", --Description for the item
         item = "sodacup", --item that will be given(item name in shared.lua)
-        required = {"empty-soda-cup"}, -- required items to make
+         required = {
+            [1] = {itemName = "mushrooms", amount = 1},
+            [2] = {itemName = "onion", amount = 1},
+            [3] = {itemName = "tomatoes", amount = 4},
+        }, -- list of items required with the amount on it
         progressbar = "Grabbing Soda", -- text to display on progressbar
         progresstime = 5000, -- in milliseconds
         dictionary = "mini@repair", --dictionary name for animation
